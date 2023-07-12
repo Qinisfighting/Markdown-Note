@@ -1,4 +1,4 @@
-# Markdown Notepad
+## Markdown Notepad
 
 A Small Tool To Write Markdown Notes 
 
