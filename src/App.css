@@ -43,7 +43,7 @@ button:focus {
   border: none;
   color: #4e5063cf;
   border-radius: 3px;
-  font-size: 2rem;
+  font-size: 2em;
 }
 
 .first-note {
@@ -52,9 +52,9 @@ button:focus {
   border: none;
   color: white;
   border-radius: 5px;
-  padding: 0 3rem;
+  padding: 0 2em;
   font-family: "Poiret One", sans-serif;
-  font-size: 2em;
+  font-size: 1.7em;
   font-weight: 900;
 }
 
