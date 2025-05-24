@@ -52,17 +52,16 @@ button:focus {
   border: none;
   color: white;
   border-radius: 5px;
-  padding: 1px 1rem;
+  padding: 0 3rem;
   font-family: "Poiret One", sans-serif;
   font-size: 2em;
-  font-weight: bolder;
-  font-style: normal;
+  font-weight: 900;
 }
 
 .editor {
   width: 80%;
   height: 100vh;
-  background-image: url("https://cdn.hovia.com/app/uploads/abstract-neutral-floral-wallpaper-mural_Plain.jpg");
+  background-image: url("./images/bg.PNG");
   background-position: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -106,6 +105,7 @@ button:focus {
 
 .selected-note {
   background-color: rgba(207, 174, 200, 0.933);
+  border: dotted 2px white;
 }
 
 .selected-note .text-snippet {
