@@ -10,8 +10,7 @@ button:focus {
 
 .pane {
   overflow-y: auto;
-  background-color:rgba(255, 255, 0, 0.26);
-  
+  background-color: rgba(209, 174, 201, 0.365);
 }
 
 .sidebar {
@@ -28,7 +27,7 @@ button:focus {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color:rgba(59, 59, 59, 0.884)
+  color: rgba(59, 59, 59, 0.784);
 }
 
 .sidebar--header > h3 {
@@ -37,34 +36,29 @@ button:focus {
 
 .new-note {
   cursor: pointer;
-  background-color: #6c4d72;
+  background-color: transparent;
   border: none;
-  color: white;
+  color: #4e5063cf;
   border-radius: 3px;
-  height: 30px;
-  width: 30px;
-  border: 2px outset white;
+  font-size: 2rem;
 }
 
 .first-note {
   cursor: pointer;
-  background-color: #6c4d72;
+  background-color: rgb(207, 174, 200);
   border: none;
   color: white;
   border-radius: 5px;
-  padding: 2px 1rem;
-  border: 3px outset white;
+  padding: 1px 1rem;
 }
 
 .editor {
   width: 80%;
   height: 100vh;
-  background-image: url('https://cdn.hovia.com/app/uploads/abstract-neutral-floral-wallpaper-mural_Plain.jpg');
+  background-image: url("https://cdn.hovia.com/app/uploads/abstract-neutral-floral-wallpaper-mural_Plain.jpg");
   background-position: fixed;
   background-repeat: no-repeat;
   background-size: cover;
- 
-
 }
 
 .title {
@@ -74,6 +68,7 @@ button:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: rgb(93, 92, 92);
 }
 
 .title--delete {
@@ -96,17 +91,22 @@ button:focus {
   font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.2rem;
-  color: #4A4E74;
+  color: #41424d;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .selected-note {
-  background-color: #6c4d72;
+  background-color: rgba(207, 174, 200, 0.933);
 }
 
 .selected-note .text-snippet {
+  color: white;
+  font-weight: 700;
+}
+
+.selected-note-icon {
   color: white;
   font-weight: 700;
 }
@@ -118,7 +118,7 @@ button:focus {
 }
 
 .gutter.gutter-horizontal {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
 }
 
 .gutter.gutter-horizontal:hover {
@@ -136,8 +136,8 @@ button:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 0, 0.26);
-  color:rgb(48, 47, 47)
+  background-color: white;
+  color: rgba(48, 47, 47, 0.688);
 }
 
 .delete-btn {
@@ -149,53 +149,3 @@ button:focus {
 .title:hover > .delete-btn {
   display: block;
 }
-
-.trash-icon {
-  cursor: pointer;
-}
-
-.gg-trash {
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  transform: scale(var(--ggs,1));
-  width: 10px;
-  height: 12px;
-  border: 2px solid transparent;
-  box-shadow:
-      0 0 0 2px,
-      inset -2px 0 0,
-      inset 2px 0 0;
-  border-bottom-left-radius: 1px;
-  border-bottom-right-radius: 1px;
-  margin-top: 4px;
-  margin-right:8px
-}
-
-.gg-trash::after,
-.gg-trash::before {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute
-}
-
-.gg-trash::after {
-    background: currentColor;
-    border-radius: 3px;
-    width: 16px;
-    height: 2px;
-    top: -4px;
-    left: -5px
-}
-
-.gg-trash::before {
-    width: 10px;
-    height: 4px;
-    border: 2px solid;
-    border-bottom: transparent;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    top: -7px;
-    left: -2px
-} 
