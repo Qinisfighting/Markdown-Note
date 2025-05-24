@@ -28,6 +28,9 @@ button:focus {
   justify-content: space-around;
   align-items: center;
   color: rgba(59, 59, 59, 0.784);
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .sidebar--header > h3 {
@@ -50,6 +53,10 @@ button:focus {
   color: white;
   border-radius: 5px;
   padding: 1px 1rem;
+  font-family: "Poiret One", sans-serif;
+  font-size: 2em;
+  font-weight: bolder;
+  font-style: normal;
 }
 
 .editor {

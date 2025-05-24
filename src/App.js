@@ -81,7 +81,7 @@ export default function App() {
         <div className="no-notes">
           <button className="first-note" onClick={createNewNote}>
             <p>
-              creaтe a noтe{" "}
+              create a note{" "}
               <FontAwesomeIcon
                 icon={icon({
                   name: "marker",

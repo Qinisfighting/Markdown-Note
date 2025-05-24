@@ -53,7 +53,7 @@ export default function Sidebar(props) {
     <section className="pane sidebar">
       <div className="sidebar--header">
         <h3>
-          ℕ𝕆𝕋𝔼𝕊{" "}
+          Notes{" "}
           {/* <FontAwesomeIcon
             icon={icon({ name: "clipboard" })}
             style={{ color: "gray", fontSize: "21px" }}
