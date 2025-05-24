@@ -19,7 +19,6 @@ export default function App() {
     (notes[0] && notes[0].id) || ""
   );
 
-  // Every time the `notes` array changes, save it in localStorage.
   React.useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
@@ -28,9 +27,10 @@ export default function App() {
     const newNote = {
       id: nanoid(),
       body: "# New note",
+      isLocked: false,
     };
     setNotes((prevNotes) => [newNote, ...prevNotes]);
-    setCurrentNoteId(newNote.id); //update state 'currentNoteId' to 'newNote.id'
+    setCurrentNoteId(newNote.id);
   }
 
   function updateNote(text) {
@@ -40,7 +40,7 @@ export default function App() {
       for (let i = 0; i < oldNotes.length; i++) {
         const oldNote = oldNotes[i];
         if (oldNote.id === currentNoteId) {
-          newArray.unshift({ ...oldNote, body: text }); //update the body property, but keep all the rest properties.
+          newArray.unshift({ ...oldNote, body: text });
         } else {
           newArray.push(oldNote);
         }
@@ -62,6 +62,14 @@ export default function App() {
     );
   }
 
+  function toggleLock(noteId) {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === noteId ? { ...note, isLocked: !note.isLocked } : note
+      )
+    );
+  }
+
   return (
     <main>
       {notes.length > 0 ? (
@@ -72,6 +80,7 @@ export default function App() {
             setCurrentNoteId={setCurrentNoteId}
             newNote={createNewNote}
             deleteNote={deleteNote}
+            toggleLock={toggleLock}
           />
           {currentNoteId && notes.length > 0 && (
             <Editor currentNote={findCurrentNote()} updateNote={updateNote} />

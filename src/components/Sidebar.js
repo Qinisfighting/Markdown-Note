@@ -13,37 +13,48 @@ export default function Sidebar(props) {
       >
         <h4 className="text-snippet">{note.body.split("\n")[0]}</h4>
 
-        <button
-          className="delete-btn"
-          onClick={(event) => props.deleteNote(event, note.id)} //pass parameters (event to event, note.id to noteId) in deleteNote function in App.js
-        >
-          <FontAwesomeIcon
-            icon={icon({ name: "trash" })}
-            className={`title ${
-              note.id === props.currentNote.id ? "selected-note-icon" : ""
-            }`}
-          />
-        </button>
-        <button
-          className="delete-btn"
-          onClick={(event) => props.deleteNote(event, note.id)} //pass parameters (event to event, note.id to noteId) in deleteNote function in App.js
-        >
-          <FontAwesomeIcon
-            icon={icon({ name: "lock" })}
-            className={`title ${
-              note.id === props.currentNote.id ? "selected-note-icon" : ""
-            }`}
-          />
+        {!note.isLocked && (
+          <button
+            className="delete-btn"
+            onClick={(event) => props.deleteNote(event, note.id)}
+          >
+            <FontAwesomeIcon
+              icon={icon({ name: "trash" })}
+              className={`title ${
+                note.id === props.currentNote.id ? "selected-note-icon" : ""
+              }`}
+            />
+          </button>
+        )}
 
-          {/* <FontAwesomeIcon
-            icon={icon({ name: "lock-open" })}
-            style={{
-              color: "white",
-              fontSize: "13px",
-              marginLeft: "8px",
-              cursor: "pointer",
-            }}
-          /> */}
+        <button
+          className="delete-btn"
+          onClick={(event) => {
+            event.stopPropagation();
+            props.toggleLock(note.id);
+          }}
+        >
+          {note.isLocked ? (
+            <FontAwesomeIcon
+              icon={icon({ name: "lock" })}
+              style={{
+                color: "white",
+                fontSize: "13px",
+                marginLeft: "8px",
+                cursor: "pointer",
+              }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={icon({ name: "lock-open" })}
+              style={{
+                color: "white",
+                fontSize: "13px",
+                marginLeft: "8px",
+                cursor: "pointer",
+              }}
+            />
+          )}
         </button>
       </div>
     </div>
@@ -52,13 +63,7 @@ export default function Sidebar(props) {
   return (
     <section className="pane sidebar">
       <div className="sidebar--header">
-        <h3>
-          Notes{" "}
-          {/* <FontAwesomeIcon
-            icon={icon({ name: "clipboard" })}
-            style={{ color: "gray", fontSize: "21px" }}
-          /> */}
-        </h3>
+        <h3>Notes</h3>
         <button className="new-note" onClick={props.newNote}>
           +
         </button>
