@@ -38,7 +38,7 @@ export default function App() {
   function createNewNote() {
     const newNote = {
       id: nanoid(),
-      body: `${getFormattedTimestamp()} \t`,
+      body: `${getFormattedTimestamp()} `,
       isLocked: false,
     };
     setNotes((prevNotes) => [newNote, ...prevNotes]);
