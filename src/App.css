@@ -89,6 +89,12 @@ button:focus {
   display: block;
 }
 
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
 .note-summary:not(:last-of-type) {
   border-bottom: 1px solid lightgray;
 }
@@ -103,6 +109,7 @@ button:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 1em;
+  flex: 3;
 }
 
 .selected-note {
@@ -120,6 +127,7 @@ button:focus {
   color: white;
   font-weight: 700;
   font-size: medium;
+  flex: 1;
 }
 
 .gutter {
@@ -155,6 +163,7 @@ button:focus {
   display: none;
   background: none;
   border: none;
+  margin-right: 10px;
 }
 
 .title:hover > .delete-btn {

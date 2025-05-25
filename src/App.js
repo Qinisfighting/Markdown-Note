@@ -23,10 +23,22 @@ export default function App() {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
+  function getFormattedTimestamp() {
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2, "0");
+    const mm = String(now.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const yy = String(now.getFullYear()).slice(-2);
+    const hh = String(now.getHours()).padStart(2, "0");
+    const min = String(now.getMinutes()).padStart(2, "0");
+    const sec = String(now.getSeconds()).padStart(2, "0");
+
+    return `${dd}.${mm}.${yy}-${hh}:${min}:${sec}`;
+  }
+
   function createNewNote() {
     const newNote = {
       id: nanoid(),
-      body: "# New note",
+      body: `${getFormattedTimestamp()} \t`,
       isLocked: false,
     };
     setNotes((prevNotes) => [newNote, ...prevNotes]);
@@ -34,17 +46,38 @@ export default function App() {
   }
 
   function updateNote(text) {
-    // Put the most recently-modified note at the top
+    const updatedTimestamp = getFormattedTimestamp();
+
     setNotes((oldNotes) => {
       const newArray = [];
+
       for (let i = 0; i < oldNotes.length; i++) {
         const oldNote = oldNotes[i];
+
         if (oldNote.id === currentNoteId) {
-          newArray.unshift({ ...oldNote, body: text });
+          const lines = text.split("\n");
+          const firstLine = lines[0] || "";
+
+          // Match timestamp at start of line with or without space
+          const match = firstLine.match(
+            /^(\d{2}\.\d{2}\.\d{2}-\d{2}:\d{2}:\d{2})(.*)$/
+          );
+
+          let titlePart = "";
+
+          if (match) {
+            titlePart = match[2].trimStart(); // everything after the timestamp
+          }
+
+          const newFirstLine = `${updatedTimestamp} ${titlePart}`;
+          const newBody = [newFirstLine, ...lines.slice(1)].join("\n");
+
+          newArray.unshift({ ...oldNote, body: newBody });
         } else {
           newArray.push(oldNote);
         }
       }
+
       return newArray;
     });
   }
