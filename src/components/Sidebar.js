@@ -37,22 +37,16 @@ export default function Sidebar(props) {
           {note.isLocked ? (
             <FontAwesomeIcon
               icon={icon({ name: "lock" })}
-              style={{
-                color: "white",
-                fontSize: "13px",
-                marginLeft: "8px",
-                cursor: "pointer",
-              }}
+              className={`title ${
+                note.id === props.currentNote.id ? "selected-note-icon" : ""
+              }`}
             />
           ) : (
             <FontAwesomeIcon
               icon={icon({ name: "lock-open" })}
-              style={{
-                color: "white",
-                fontSize: "13px",
-                marginLeft: "8px",
-                cursor: "pointer",
-              }}
+              className={`title ${
+                note.id === props.currentNote.id ? "selected-note-icon" : ""
+              }`}
             />
           )}
         </button>
