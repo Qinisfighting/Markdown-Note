@@ -47,39 +47,20 @@ export default function App() {
 
   function updateNote(text) {
     const updatedTimestamp = getFormattedTimestamp();
-
-    setNotes((oldNotes) => {
-      const newArray = [];
-
-      for (let i = 0; i < oldNotes.length; i++) {
-        const oldNote = oldNotes[i];
-
-        if (oldNote.id === currentNoteId) {
-          const lines = text.split("\n");
-          const firstLine = lines[0] || "";
-
-          // Match timestamp at start of line with or without space
-          const match = firstLine.match(
-            /^(\d{2}\.\d{2}\.\d{2}-\d{2}:\d{2}:\d{2})(.*)$/
-          );
-
-          let titlePart = "";
-
-          if (match) {
-            titlePart = match[2].trimStart(); // everything after the timestamp
-          }
-
-          const newFirstLine = `${updatedTimestamp} ${titlePart}`;
-          const newBody = [newFirstLine, ...lines.slice(1)].join("\n");
-
-          newArray.unshift({ ...oldNote, body: newBody });
-        } else {
-          newArray.push(oldNote);
-        }
-      }
-
-      return newArray;
-    });
+    setNotes((oldNotes) =>
+      oldNotes.map((note) => {
+        if (note.id !== currentNoteId) return note;
+        // pull off just the title, rebuild the first line…
+        const lines = text.split("\n");
+        const match = lines[0].match(
+          /^(\d{2}\.\d{2}\.\d{2}-\d{2}:\d{2}:\d{2})(.*)$/
+        );
+        const titlePart = match ? match[2].trimStart() : lines[0];
+        const newFirstLine = `${updatedTimestamp} ${titlePart}`;
+        const newBody = [newFirstLine, ...lines.slice(1)].join("\n");
+        return { ...note, body: newBody };
+      })
+    );
   }
 
   function deleteNote(event, noteId) {
