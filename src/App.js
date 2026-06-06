@@ -91,7 +91,7 @@ export default function App() {
         <Split
           key={isSidebarCollapsed ? "sidebar-collapsed" : "sidebar-expanded"}
           sizes={isSidebarCollapsed ? [0, 100] : [30, 70]}
-          minSize={isSidebarCollapsed ? [36, 0] : [180, 300]}
+          minSize={isSidebarCollapsed ? [48, 0] : [180, 300]}
           gutterSize={isSidebarCollapsed ? 0 : 10}
           direction="horizontal"
           className="split"

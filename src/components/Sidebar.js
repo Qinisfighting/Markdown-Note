@@ -6,14 +6,24 @@ export default function Sidebar(props) {
   if (props.isCollapsed) {
     return (
       <section className="pane sidebar sidebar--collapsed">
-        <button
-          className="sidebar-toggle"
-          onClick={props.toggleSidebar}
-          aria-label="Expand sidebar"
-          title="Expand sidebar"
-        >
-          <FontAwesomeIcon icon={icon({ name: "angles-right" })} />
-        </button>
+        <div className="sidebar-controls sidebar-controls--collapsed">
+          <button
+            className="new-note"
+            onClick={props.newNote}
+            aria-label="Create new note"
+            title="Create new note"
+          >
+            <FontAwesomeIcon icon={icon({ name: "plus" })} />
+          </button>
+          <button
+            className="sidebar-toggle"
+            onClick={props.toggleSidebar}
+            aria-label="Expand sidebar"
+            title="Expand sidebar"
+          >
+            <FontAwesomeIcon icon={icon({ name: "angles-right" })} />
+          </button>
+        </div>
       </section>
     );
   }
@@ -72,8 +82,7 @@ export default function Sidebar(props) {
   return (
     <section className="pane sidebar sidebar--expanded">
       <div className="sidebar--header">
-        <h3>N✿tes</h3>
-        <div className="sidebar-actions">
+        <div className="sidebar-controls">
           <button
             className="new-note"
             onClick={props.newNote}
