@@ -21,25 +21,14 @@ export default function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = React.useState(true);
 
   React.useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
+    const savedNotes = notes.filter((note) => note.body.trim() !== "");
+    localStorage.setItem("notes", JSON.stringify(savedNotes));
   }, [notes]);
-
-  function getFormattedTimestamp() {
-    const now = new Date();
-    const dd = String(now.getDate()).padStart(2, "0");
-    const mm = String(now.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const yy = String(now.getFullYear()).slice(-2);
-    const hh = String(now.getHours()).padStart(2, "0");
-    const min = String(now.getMinutes()).padStart(2, "0");
-    const sec = String(now.getSeconds()).padStart(2, "0");
-
-    return `${dd}.${mm}.${yy}-${hh}:${min}:${sec}`;
-  }
 
   function createNewNote() {
     const newNote = {
       id: nanoid(),
-      body: `${getFormattedTimestamp()} `,
+      body: "",
       isLocked: false,
     };
     setNotes((prevNotes) => [newNote, ...prevNotes]);
@@ -47,20 +36,10 @@ export default function App() {
   }
 
   function updateNote(text) {
-    const updatedTimestamp = getFormattedTimestamp();
     setNotes((oldNotes) =>
-      oldNotes.map((note) => {
-        if (note.id !== currentNoteId) return note;
-        // pull off just the title, rebuild the first line…
-        const lines = text.split("\n");
-        const match = lines[0].match(
-          /^(\d{2}\.\d{2}\.\d{2}-\d{2}:\d{2}:\d{2})(.*)$/
-        );
-        const titlePart = match ? match[2].trimStart() : lines[0];
-        const newFirstLine = `${updatedTimestamp} ${titlePart}`;
-        const newBody = [newFirstLine, ...lines.slice(1)].join("\n");
-        return { ...note, body: newBody };
-      })
+      oldNotes.map((note) =>
+        note.id === currentNoteId ? { ...note, body: text } : note
+      )
     );
   }
 

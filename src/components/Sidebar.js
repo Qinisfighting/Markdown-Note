@@ -11,7 +11,7 @@ export default function Sidebar(props) {
             className="new-note"
             onClick={props.newNote}
             aria-label="Create new note"
-            title="Create new note"
+            title="Create markdown"
           >
             <FontAwesomeIcon icon={icon({ name: "plus" })} />
           </button>
@@ -42,12 +42,14 @@ export default function Sidebar(props) {
           <button
             className="delete-btn"
             onClick={(event) => props.deleteNote(event, note.id)}
+            aria-label="Delete note"
+            title="Delete note"
           >
             <FontAwesomeIcon
               icon={icon({ name: "trash" })}
-              className={`title ${
+              className={
                 note.id === props.currentNote.id ? "selected-note-icon" : ""
-              }`}
+              }
             />
           </button>
         )}
@@ -58,20 +60,22 @@ export default function Sidebar(props) {
             event.stopPropagation();
             props.toggleLock(note.id);
           }}
+          aria-label={note.isLocked ? "Unlock note" : "Lock note"}
+          title={note.isLocked ? "Unlock note" : "Lock note"}
         >
           {note.isLocked ? (
             <FontAwesomeIcon
               icon={icon({ name: "lock" })}
-              className={`title ${
+              className={
                 note.id === props.currentNote.id ? "selected-note-icon" : ""
-              }`}
+              }
             />
           ) : (
             <FontAwesomeIcon
               icon={icon({ name: "lock-open" })}
-              className={`title ${
+              className={
                 note.id === props.currentNote.id ? "selected-note-icon" : ""
-              }`}
+              }
             />
           )}
         </button>
@@ -87,7 +91,7 @@ export default function Sidebar(props) {
             className="new-note"
             onClick={props.newNote}
             aria-label="Create new note"
-            title="Create new note"
+            title="Create markdown"
           >
             <FontAwesomeIcon icon={icon({ name: "plus" })} />
           </button>

@@ -106,6 +106,7 @@ button:focus {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   background-image: url("./images/bg.PNG");
   background-position: fixed;
   background-repeat: no-repeat;
@@ -155,15 +156,19 @@ button:focus {
   flex: 1;
   height: auto !important;
   min-height: 0 !important;
+  outline: none;
 }
 
 .title {
   overflow: hidden;
   width: 100%;
+  min-height: 2.75rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
+  border-bottom: 1px solid rgba(78, 80, 99, 0.16);
   color: rgb(93, 92, 92);
   font-size: medium;
 }
@@ -190,10 +195,11 @@ button:focus {
 }
 
 .text-snippet {
-  padding-inline: 5px;
+  margin: 0;
   font-size: medium;
   font-weight: 400;
   line-height: 1.2rem;
+  min-height: 1.2rem;
   color: #41424d;
   white-space: nowrap;
   overflow: hidden;
@@ -215,8 +221,8 @@ button:focus {
 .selected-note-icon {
   color: white;
   font-weight: 700;
-  font-size: medium;
-  flex: 1;
+  font-size: 1rem;
+  flex: 0 0 auto;
 }
 
 .gutter {
@@ -250,11 +256,19 @@ button:focus {
 
 .delete-btn {
   display: none;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
   background: none;
   border: none;
-  margin-right: 10px;
+  margin-right: 0.35rem;
+  padding: 0;
+  color: #41424d;
+  font-size: 1rem;
 }
 
 .title:hover > .delete-btn {
-  display: block;
+  display: inline-flex;
 }
