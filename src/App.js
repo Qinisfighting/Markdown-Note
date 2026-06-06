@@ -18,6 +18,7 @@ export default function App() {
   const [currentNoteId, setCurrentNoteId] = React.useState(
     (notes[0] && notes[0].id) || ""
   );
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = React.useState(true);
 
   React.useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
@@ -87,7 +88,14 @@ export default function App() {
   return (
     <main>
       {notes.length > 0 ? (
-        <Split sizes={[30, 70]} direction="horizontal" className="split">
+        <Split
+          key={isSidebarCollapsed ? "sidebar-collapsed" : "sidebar-expanded"}
+          sizes={isSidebarCollapsed ? [0, 100] : [30, 70]}
+          minSize={isSidebarCollapsed ? [36, 0] : [180, 300]}
+          gutterSize={isSidebarCollapsed ? 0 : 10}
+          direction="horizontal"
+          className="split"
+        >
           <Sidebar
             notes={notes}
             currentNote={findCurrentNote()}
@@ -95,6 +103,10 @@ export default function App() {
             newNote={createNewNote}
             deleteNote={deleteNote}
             toggleLock={toggleLock}
+            isCollapsed={isSidebarCollapsed}
+            toggleSidebar={() =>
+              setIsSidebarCollapsed((prevCollapsed) => !prevCollapsed)
+            }
           />
           {currentNoteId && notes.length > 0 && (
             <Editor currentNote={findCurrentNote()} updateNote={updateNote} />

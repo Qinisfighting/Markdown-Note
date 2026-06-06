@@ -3,6 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default function Sidebar(props) {
+  if (props.isCollapsed) {
+    return (
+      <section className="pane sidebar sidebar--collapsed">
+        <button
+          className="sidebar-toggle"
+          onClick={props.toggleSidebar}
+          aria-label="Expand sidebar"
+          title="Expand sidebar"
+        >
+          <FontAwesomeIcon icon={icon({ name: "angles-right" })} />
+        </button>
+      </section>
+    );
+  }
+
   const noteElements = props.notes.map((note, index) => (
     <div key={note.id}>
       <div
@@ -55,14 +70,29 @@ export default function Sidebar(props) {
   ));
 
   return (
-    <section className="pane sidebar">
+    <section className="pane sidebar sidebar--expanded">
       <div className="sidebar--header">
         <h3>N✿tes</h3>
-        <button className="new-note" onClick={props.newNote}>
-          +
-        </button>
+        <div className="sidebar-actions">
+          <button
+            className="new-note"
+            onClick={props.newNote}
+            aria-label="Create new note"
+            title="Create new note"
+          >
+            <FontAwesomeIcon icon={icon({ name: "plus" })} />
+          </button>
+        </div>
       </div>
       {noteElements}
+      <button
+        className="sidebar-toggle sidebar-toggle--expanded"
+        onClick={props.toggleSidebar}
+        aria-label="Collapse sidebar"
+        title="Collapse sidebar"
+      >
+        <FontAwesomeIcon icon={icon({ name: "angles-left" })} />
+      </button>
     </section>
   );
 }

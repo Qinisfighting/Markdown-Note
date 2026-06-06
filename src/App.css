@@ -16,6 +16,22 @@ button:focus {
 .sidebar {
   width: 20%;
   height: 100vh;
+  position: relative;
+}
+
+.sidebar--collapsed {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 0 1rem;
+  overflow: hidden;
+}
+
+.sidebar--expanded {
+  box-sizing: border-box;
+  padding-bottom: 3rem;
 }
 
 /* 
@@ -25,25 +41,45 @@ button:focus {
 */
 .sidebar--header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   color: rgba(59, 59, 59, 0.784);
   font-family: "Pacifico", cursive;
   font-weight: 400;
   font-style: normal;
+  padding: 0 0.7rem;
 }
 
 .sidebar--header > h3 {
   font-size: 1.75rem;
 }
 
+.sidebar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sidebar-toggle,
 .new-note {
   cursor: pointer;
   background-color: transparent;
   border: none;
   color: #4e5063cf;
   border-radius: 3px;
-  font-size: 2em;
+  font-size: 1.25rem;
+  padding: 0.35rem;
+}
+
+.sidebar-toggle:hover,
+.new-note:hover {
+  color: #41424d;
+}
+
+.sidebar-toggle--expanded {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 1rem;
 }
 
 .first-note {
@@ -114,7 +150,6 @@ button:focus {
 
 .selected-note {
   background-color: rgba(207, 174, 200, 0.933);
-  border: dotted 2px white;
 }
 
 .selected-note .text-snippet {
