@@ -26,7 +26,11 @@ export default function Editor({ currentNote, updateNote }) {
   }
 
   return (
-    <section className="pane editor">
+    <section
+      className={`pane editor ${
+        selectedTab === "preview" ? "editor--preview" : ""
+      }`}
+    >
       <ReactMde
         value={draftBody}
         onChange={setDraftBody}
@@ -41,7 +45,8 @@ export default function Editor({ currentNote, updateNote }) {
         generateMarkdownPreview={(markdown) =>
           Promise.resolve(converter.makeHtml(markdown))
         }
-        minEditorHeight={0}
+        minEditorHeight={100}
+        minPreviewHeight={100}
       />
     </section>
   );
